@@ -1,20 +1,33 @@
 import Component from "@ember/component";
 import { inject as service } from "@ember/service";
-import { task, all } from "ember-concurrency";
+import { task } from "ember-concurrency";
 
 export default Component.extend({
   store: service(),
 
   createPostsTask: task(function*() {
-    let posts = [1, 2, 3, 4].map(i =>
-      this.store.createRecord("post", {
-        title: `Title ${i}`,
-        body: `body ${i}`
-      })
-    );
+    let p1 = this.store.createRecord("post", {
+      title: `Title 1`,
+      body: `body 1`
+    });
+    yield p1.save();
 
-    yield all(posts.map(post => post.save()));
+    let p2 = this.store.createRecord("post", {
+      title: `Title 2`,
+      body: `body 2`
+    });
+    yield p2.save();
 
-    this.set("posts", posts);
+    let p3 = this.store.createRecord("post", {
+      title: `Title 3`,
+      body: `body 3`
+    });
+    yield p3.save();
+
+    let p4 = this.store.createRecord("post", {
+      title: `Title 4`,
+      body: `body 4`
+    });
+    yield p4.save();
   }).drop()
 });
