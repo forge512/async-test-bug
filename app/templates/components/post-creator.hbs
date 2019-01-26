@@ -1,4 +1,11 @@
-<button {{action (perform this.createPostsTask)}}>Create Many Posts</button>
+{{#paper-button
+  primary=true
+  raised=true
+  onClick=(perform this.createPostsTask)
+  disabled=this.createPostsTask.isRunning
+}}
+  Create Many Posts
+{{/paper-button}}
 {{#if this.createPostsTask.isRunning}}creating...{{/if}}
 
 {{#each this.posts as |post|}}
