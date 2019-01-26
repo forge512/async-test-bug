@@ -15,5 +15,7 @@ export default Component.extend({
     );
 
     yield all(posts.map(post => post.save()));
+
+    this.set("posts", posts);
   }).drop()
 });

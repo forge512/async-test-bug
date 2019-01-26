@@ -8,6 +8,7 @@ module("Acceptance | create many posts", function(hooks) {
   setupMirage(hooks);
 
   test("it makes the posts", async function(assert) {
+    server.timing = 400;
     await visit("/");
 
     await click("button");

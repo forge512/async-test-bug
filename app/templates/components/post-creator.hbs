@@ -1,1 +1,11 @@
 <button {{action (perform this.createPostsTask)}}>Create Many Posts</button>
+{{#if this.createPostsTask.isRunning}}creating...{{/if}}
+
+{{#each this.posts as |post|}}
+  <div class="post">
+    <h1>{{post.title}}</h1>
+    <p>{{post.body}}</p>
+  </div>
+{{else}}
+  <p>no posts</p>
+{{/each}}
